@@ -8,7 +8,10 @@ import "./PlayingCardList.css";
  * Can also add a new card at random. */
 function CardTable() {
   const url = "https://deckofcardsapi.com/api/deck/new/draw/";
-  const [cards, addCard, removeCards] = useAxios(url);
+  const formatResponse = (response) => {
+    return {image: response.data.cards[0].image}
+  };
+  const [cards, addCard, removeCards] = useAxios(url, formatResponse);
   return (
     <div className="PlayingCardList">
       <h3>Pick a card, any card!</h3>
@@ -18,7 +21,7 @@ function CardTable() {
       </div>
       <div className="PlayingCardList-card-area">
         {cards.map(cardData => (
-          <PlayingCard key={cardData.id} front={cardData.cards[0].image} />
+          <PlayingCard key={cardData.id} front={cardData.image} />
         ))}
       </div>
     </div>

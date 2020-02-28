@@ -10,21 +10,24 @@ function useFlip(initialVal = true) {
   return [isFacingUp, flipCard];
 };
 
-function useAxios(baseUrl) {
+function useAxios(baseUrl, formatResponse) {
   const INIT_STATE = [];
-  const [cards, setCards] = useState(INIT_STATE);
+  const [data, setData] = useState(INIT_STATE);
 
-  const addCard = async (resource = "") => {
+  const addData = async (resource = "") => {
     const url = baseUrl + resource;
-    const response = await axios.get(url);
-    setCards(cards => [...cards, { ...response.data, id: uuid() }]);
+    console.log(baseUrl);
+    console.log(resource)
+    let response = await axios.get(url);
+    response = formatResponse(response); 
+    setData(data => [...data, { ...response, id: uuid() }]);
   };
 
-  const removeCards = () => {
-    setCards(INIT_STATE);
+  const removeData = () => {
+    setData(INIT_STATE);
   };
 
-  return [cards, addCard, removeCards];
+  return [data, addData, removeData];
 };
 
 export { useFlip, useAxios };
