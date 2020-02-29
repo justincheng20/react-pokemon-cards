@@ -23,7 +23,7 @@ function useAxios(baseUrl, formatResponse, storageKey) {
 
   const removeData = () => {
     setData(INIT_STATE);
-    localStorage.removeItem(storageKey);
+    // localStorage.removeItem(storageKey);
   };
 
   return [data, addData, removeData];
