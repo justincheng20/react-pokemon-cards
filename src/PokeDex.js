@@ -17,7 +17,7 @@ function PokeDex() {
         return {name: stat.stat.name, value: stat.base_stat} })
     }
   }
-  const [pokemon, addPokemon, removePokemon] = useAxios(`https://pokeapi.co/api/v2/pokemon/`, formatResponse);
+  const [pokemon, addPokemon, removePokemon] = useAxios(`https://pokeapi.co/api/v2/pokemon/`, formatResponse, "pokemonCards");
 
   return (
     <div className="PokeDex">

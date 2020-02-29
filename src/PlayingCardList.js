@@ -11,7 +11,7 @@ function CardTable() {
   const formatResponse = (response) => {
     return {image: response.data.cards[0].image}
   };
-  const [cards, addCard, removeCards] = useAxios(url, formatResponse);
+  const [cards, addCard, removeCards] = useAxios(url, formatResponse, "playingCards");
   return (
     <div className="PlayingCardList">
       <h3>Pick a card, any card!</h3>
